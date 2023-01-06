@@ -14,7 +14,7 @@ from numba import jit
 from scipy import ndimage as ndi
 
 SEAM_COLOR = np.array([255, 200, 200])    # seam visualization color (BGR)
-SHOULD_DOWNSIZE = True                    # if True, downsize image for faster carving
+SHOULD_DOWNSIZE = False                    # if True, downsize image for faster carving
 DOWNSIZE_WIDTH = 500                      # resized image width if SHOULD_DOWNSIZE is True
 ENERGY_MASK_CONST = 100000.0              # large energy value for protective masking
 MASK_THRESHOLD = 10                       # minimum pixel intensity for binary mask
@@ -355,12 +355,12 @@ if __name__ == '__main__':
 
     # downsize image for faster processing
     h, w = im.shape[:2]
-    if SHOULD_DOWNSIZE and w > DOWNSIZE_WIDTH:
-        im = resize(im, width=DOWNSIZE_WIDTH)
-        if mask is not None:
-            mask = resize(mask, width=DOWNSIZE_WIDTH)
-        if rmask is not None:
-            rmask = resize(rmask, width=DOWNSIZE_WIDTH)
+    # if SHOULD_DOWNSIZE and w > DOWNSIZE_WIDTH:
+    #     im = resize(im, width=DOWNSIZE_WIDTH)
+    #     if mask is not None:
+    #         mask = resize(mask, width=DOWNSIZE_WIDTH)
+    #     if rmask is not None:
+    #         rmask = resize(rmask, width=DOWNSIZE_WIDTH)
 
     # image resize mode
     if args["resize"]:
